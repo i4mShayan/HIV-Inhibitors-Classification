@@ -21,7 +21,7 @@ We have used the HIV dataset available at [MoleculeNet](https://moleculenet.org/
 
 ## Feature Extraction Pipeline
 
-We convert molecular structures into graph representations and extract detailed features from both nodes (atoms) and edges (bonds) to capture the chemical characteristics essential for classification.
+First, we converted the SMILES text to molecular structures, and then transformed these structures into graph representations. We convert molecular structures into graph representations and extract detailed features from both nodes (atoms) and edges (bonds) to capture the chemical characteristics essential for classification.
 
 ### 1. Get Graph Representation of Molecules
 
