@@ -7,6 +7,8 @@ HIV inhibitor molecules are special compounds that block the virus from growing 
 
 In this project, we have developed multiple Graph Neural Network (GNN) models with different message-passing mechanisms to classify whether a given molecule is an HIV inhibitor or not. These models analyze molecular structures as graphs, learning relationships between atoms and bonds to identify potential drug candidates for HIV treatment.
 
+We have used the HIV dataset available at [MoleculeNet](https://moleculenet.org/datasets-1).
+
 ## Table of Contents
 - [Feature Extraction Pipeline](#feature-extraction-pipeline)
   - [1. Get Graph Representation of Molecules](#1-get-graph-representation-of-molecules)
