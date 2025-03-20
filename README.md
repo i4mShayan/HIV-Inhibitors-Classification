@@ -1,4 +1,5 @@
 # HIV Inhibitors Classification
+
 HIV inhibitor molecules are special compounds that block the virus from growing and spreading. They work by targeting key proteins in the virus, such as those needed for entry, copying genetic material, or making new virus particles. By stopping these steps, the molecules help control HIV infection and keep the immune system strong.
 
 ![Protease-Inhibitors-prevent-new-HIV-from-becoming-a-mature-virus-that-can-infect-other-CD4-Cells](https://github.com/user-attachments/assets/ac80b9ac-5ca9-4f51-8a8b-abb3a68e5a91)
@@ -6,8 +7,9 @@ HIV inhibitor molecules are special compounds that block the virus from growing 
 
 In this project, we have developed multiple Graph Neural Network (GNN) models with different message-passing mechanisms to classify whether a given molecule is an HIV inhibitor or not. These models analyze molecular structures as graphs, learning relationships between atoms and bonds to identify potential drug candidates for HIV treatment.
 
-
 # Feature Extraction Pipeline
+
+We convert molecular structures into graph representations and extract detailed features from both nodes (atoms) and edges (bonds) to capture the chemical characteristics essential for classification.
 
 ## 1. Get Graph Representation of Molecules
 
@@ -16,7 +18,8 @@ In this project, we have developed multiple Graph Neural Network (GNN) models wi
 | ![Graph Rep 1](https://github.com/user-attachments/assets/d4e236b6-5a20-4d43-ace6-7f831d6f2448) | ![Graph Rep 2](https://github.com/user-attachments/assets/10886c1b-cf53-4db0-a580-8e22d7c999d2) |
 
 ## 2. Get Node and Edge Features
-Each molecule is represented as a graph where nodes (atoms) have chemical properties and edges (bonds) indicate connectivity. See the table below for a quick reference of extracted features.
+
+Each molecule is represented as a graph where nodes (atoms) have chemical properties and edges (bonds) indicate connectivity. The table below provides a quick reference of the extracted features used for training the models.
 
 | **Feature**                | **Type** | **Description**                                                                                          | **Possible Values / Notes**                                  |
 |----------------------------|----------|----------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
@@ -35,29 +38,78 @@ Each molecule is represented as a graph where nodes (atoms) have chemical proper
 | **Bond Type**              | Edge     | Represents the bond type as a floating point value (e.g., 1.0 for single, 2.0 for double bonds).           | Float (e.g., 1.0, 2.0, 3.0; aromatic bonds ~1.5)             |
 | **Bond in Ring**           | Edge     | Indicates whether the bond is part of a ring.                                                           | 0.0 (not in ring) or 1.0 (in ring)                           |
 
-Some examples with 3 random selected nodes and edges with their features:
+Some examples with 3 randomly selected nodes and edges along with their features:
 
-| ![image](https://github.com/user-attachments/assets/d785f8d6-c0fc-4900-b66e-4c927bc9d622) | ![image](https://github.com/user-attachments/assets/465d6c46-c39b-4bed-be57-147b9fae13bb) |
+| ![Example Node 1](https://github.com/user-attachments/assets/d785f8d6-c0fc-4900-b66e-4c927bc9d622) | ![Example Node 2](https://github.com/user-attachments/assets/465d6c46-c39b-4bed-be57-147b9fae13bb) |
 |-----------|-----------|
-| ![image](https://github.com/user-attachments/assets/1b43f136-b94e-494c-89d9-f4eaf94e412d) | ![image](https://github.com/user-attachments/assets/04377b34-388d-40f0-9908-306f387bbf90) |
+| ![Example Edge 1](https://github.com/user-attachments/assets/1b43f136-b94e-494c-89d9-f4eaf94e412d) | ![Example Edge 2](https://github.com/user-attachments/assets/04377b34-388d-40f0-9908-306f387bbf90) |
 
+# Distribution and Split Analysis
 
+We analyzed the distribution of our dataset to ensure that the training and test sets share similar chemical spaces. This helps in building models that generalize well to unseen data.
 
+| Overall Dataset Distribution <br> ![Overall](https://github.com/user-attachments/assets/4070c12e-1e9c-4d49-b63c-146e32450f9d) | Train Set Distribution <br> ![Train](https://github.com/user-attachments/assets/55c2d46e-4b7b-40f2-9107-6f3f0247fb84) |
+|---------------------------------------------------------------|----------------------------------------------------------|
 
+| Balanced Train Set Distribution <br> ![Balanced](https://github.com/user-attachments/assets/1c499258-f6b1-4f87-ad4c-d5ea0487eb3a) | Test Set Distribution <br> ![Test](https://github.com/user-attachments/assets/3fbe5c86-18a6-4c86-baf4-f68f3bbc7a25) |
+|---------------------------------------------------------------|----------------------------------------------------------|
 
-# Dataset Split
-![image](https://github.com/user-attachments/assets/f1379d35-912f-4517-b222-9a3a1b257a3d)
-> **(a) Molecular Weight vs. Aqueous Solubility (logS)**: The first plot presents the scattered distribution of molecular weight (MW) and aqueous solubility (logS) for both the training and test sets. MW and logS are global molecular descriptors that help define the chemical space. The two sets largely overlap, indicating a consistent distribution of chemical properties between training and test data. However, a few test set molecules appear at extreme values, suggesting the presence of structurally unique compounds.
+![Scatter Plot](https://github.com/user-attachments/assets/f1379d35-912f-4517-b222-9a3a1b257a3d)
+> **(a) Molecular Weight vs. Aqueous Solubility (logS):**  
+> This plot shows the distribution of molecular weight and aqueous solubility, demonstrating a consistent chemical space across the training and test sets, with a few outliers in the test data.  
+>
+> **(b) Principal Component Analysis (PCA):**  
+> PCA was applied to molecular descriptors, with the first two components capturing nearly all the variance. The overlapping clusters confirm that the test set is well-represented within the training set.
 
-> **(b) Principal Component Analysis (PCA)**: To further investigate the chemical space, Principal Component Analysis (PCA) was applied to a set of molecular descriptors. The first two principal components (PC1 and PC2) explain most of the variance in the dataset. PC1 accounts for 94.00% of the variance, while PC2 explains 5.95%, giving a total variance coverage of 99.95%. The training and test sets nearly completely overlap in this space, confirming that the test set is well-represented within the training set’s chemical space.
+# Models and Training Config
 
+We tested four nearly identical models, differing only in their message passing mechanisms (GCN, GAT, GIN, and TransformerConv) to compare their strengths for the HIV inhibitor classification task. All models were trained using the same configuration, ensuring a fair comparison of the message passing methods.
 
-# TODO
-- [ ] Using Differentiable Pooling (e.g. SAGPooling) instead of TopK Pooling mechanism.
-- [ ] Research More On the most effective chemical features for nodes and edges
-- [ ] Experimenting with more advanced GNN architectures and hyperparameter tuning
+```python
+config = {
+    "epochs": [30],
+    "batch_size": [128],
+    "learning_rate": [0.05],
+    "weight_decay": [0.0005],
+    "sgd_momentum": [0.8],
+    "scheduler_gamma": [0.95],
+    "pos_weight": [1.3],
+    "model_embedding_size": [128],
+    "model_attention_heads": [4],
+    "model_layers": [3],
+    "model_dropout_rate": [0.2],
+    "model_top_k_ratio": [0.5],
+    "model_top_k_every_n": [1],
+    "model_dense_neurons": [256],
+    "ignore_edge_features": [False],
+    "model_edge_dim": [2],
+}
+```
 
-# Refrences
+# Results and Analysis
+
+We evaluated the performance of each model using key metrics such as accuracy, precision, recall, and F1 score. The table below summarizes the results:
+
+| **Method**          | **Accuracy** | **Precision** | **Recall** | **F1 Score** |
+|---------------------|--------------|---------------|------------|--------------|
+| **GCN**             | 0.7645       | 0.7580        | 0.7831     | 0.7704       |
+| **GAT**             | **0.7726**   | **0.7628**    | **0.7914** | **0.7768**   |
+| **GIN**             | 0.6812       | 0.6877        | 0.6638     | 0.6755       |
+| **TransformerConv** | 0.7581       | 0.7526        | 0.7689     | 0.7607       |
+
+- **GCN:** Offers balanced performance with strong accuracy and F1 score.
+- **GAT:** Achieves the best results across all metrics, thanks to its effective attention mechanism.
+- **GIN:** Shows lower performance, suggesting further tuning is required.
+- **TransformerConv:** Performs competitively, though slightly below GAT.
+
+# Future Work
+
+- [ ] Explore using Differentiable Pooling (e.g., SAGPooling) as an alternative to the TopK Pooling mechanism.
+- [ ] Investigate more effective chemical features for both nodes and edges.
+- [ ] Experiment with more advanced GNN architectures and perform comprehensive hyperparameter tuning.
+
+# References
+
 [1] [Classiﬁcation of HIV‑1 Protease Inhibitors by Machine Learning Methods](https://pubs.acs.org/doi/epdf/10.1021/acsomega.8b01843)
 
 [2] [Graph Neural Network for Molecular Structure: Application in HIV Inhibitor Molecule Prediction](https://osf.io/preprints/osf/c3mqy_v1)
