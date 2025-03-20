@@ -38,3 +38,5 @@ In this project, we have developed multiple Graph Neural Network (GNN) models wi
 
 # Refrences
 [1] [Classiﬁcation of HIV‑1 Protease Inhibitors by Machine Learning Methods](https://pubs.acs.org/doi/epdf/10.1021/acsomega.8b01843)
+
+[2] [Graph Neural Network for Molecular Structure: Application in HIV Inhibitor Molecule Prediction](https://osf.io/preprints/osf/c3mqy_v1)
