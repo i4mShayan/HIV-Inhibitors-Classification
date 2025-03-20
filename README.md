@@ -6,6 +6,7 @@ HIV inhibitor molecules are special compounds that block the virus from growing 
 
 In this project, we have developed multiple Graph Neural Network (GNN) models with different message-passing mechanisms to classify whether a given molecule is an HIV inhibitor or not. These models analyze molecular structures as graphs, learning relationships between atoms and bonds to identify potential drug candidates for HIV treatment.
 
+
 # Feature Extraction Pipeline
 ## 1. Get Graph Representation of Molecules
 ![image](https://github.com/user-attachments/assets/d4e236b6-5a20-4d43-ace6-7f831d6f2448)
@@ -17,8 +18,14 @@ In this project, we have developed multiple Graph Neural Network (GNN) models wi
 ![image](https://github.com/user-attachments/assets/e5023e01-5c82-4539-8eb6-73888ac9e023)
 
 # Dataset Split
-Total Distribution of Dataset:
+![image](https://github.com/user-attachments/assets/f1379d35-912f-4517-b222-9a3a1b257a3d)
+> **(a) Molecular Weight vs. Aqueous Solubility (logS)**: The first plot presents the scattered distribution of molecular weight (MW) and aqueous solubility (logS) for both the training and test sets. MW and logS are global molecular descriptors that help define the chemical space. The two sets largely overlap, indicating a consistent distribution of chemical properties between training and test data. However, a few test set molecules appear at extreme values, suggesting the presence of structurally unique compounds.
+
+> **(b) Principal Component Analysis (PCA)**: To further investigate the chemical space, Principal Component Analysis (PCA) was applied to a set of molecular descriptors. The first two principal components (PC1 and PC2) explain most of the variance in the dataset. PC1 accounts for 94.00% of the variance, while PC2 explains 5.95%, giving a total variance coverage of 99.95%. The training and test sets nearly completely overlap in this space, confirming that the test set is well-represented within the training set’s chemical space.
 
 
-# TODO:
+# TODO
 Using Differentiable Pooling (e.g. SAGPooling) instead of TopK Pooling mechanism.
+
+# Refrences
+[1] [Classiﬁcation of HIV‑1 Protease Inhibitors by Machine Learning Methods](https://pubs.acs.org/doi/epdf/10.1021/acsomega.8b01843)
