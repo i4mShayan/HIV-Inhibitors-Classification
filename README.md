@@ -37,9 +37,10 @@ Each molecule is represented as a graph where nodes (atoms) have chemical proper
 
 Some examples with 3 random selected nodes and edges with their features:
 
-| ![Feature 1](https://github.com/user-attachments/assets/c7edce2d-aa65-41e8-bc48-5472479fb840) | ![Feature 2](https://github.com/user-attachments/assets/3ad5b698-fc0c-4be4-8bcd-bc06f1c662b8) |
+| ![image](https://github.com/user-attachments/assets/d785f8d6-c0fc-4900-b66e-4c927bc9d622) | ![image](https://github.com/user-attachments/assets/465d6c46-c39b-4bed-be57-147b9fae13bb) |
 |-----------|-----------|
-| ![Feature 3](https://github.com/user-attachments/assets/f145f78a-f6d0-4d4f-b2b0-43d9361da618) | ![Feature 4](https://github.com/user-attachments/assets/d8ce294a-7d1d-4aa3-b6b2-a17a9d5d753d) |
+| ![image](https://github.com/user-attachments/assets/1b43f136-b94e-494c-89d9-f4eaf94e412d) | ![image](https://github.com/user-attachments/assets/04377b34-388d-40f0-9908-306f387bbf90) |
+
 
 
 
