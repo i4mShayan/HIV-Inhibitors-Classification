@@ -16,6 +16,26 @@ In this project, we have developed multiple Graph Neural Network (GNN) models wi
 | ![Graph Rep 1](https://github.com/user-attachments/assets/d4e236b6-5a20-4d43-ace6-7f831d6f2448) | ![Graph Rep 2](https://github.com/user-attachments/assets/10886c1b-cf53-4db0-a580-8e22d7c999d2) |
 
 ## 2. Get Node and Edge Features
+Each molecule is represented as a graph where nodes (atoms) have chemical properties and edges (bonds) indicate connectivity. See the table below for a quick reference of extracted features.
+
+| **Feature**                | **Type** | **Description**                                                                                          | **Possible Values / Notes**                                  |
+|----------------------------|----------|----------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| **Atomic Number**          | Node     | The atomic number of the atom as provided by RDKit.                                                    | e.g., 1 for Hydrogen, 6 for Carbon, etc.                     |
+| **Period**                 | Node     | The period (row) of the element in the periodic table, obtained via the periodictable library.            | Positive integers (1, 2, 3, …)                               |
+| **Group**                  | Node     | The group (column) of the element in the periodic table.                                               | Positive integers (1, 2, 3, …)                               |
+| **Combined Periodic Index**| Node     | Computed as `(Period - 1) * 18 + (Group - 1)`, providing a unique index based on period and group.       | Non-negative integer; -1 if period/group info is missing     |
+| **Atom Degree**            | Node     | The number of bonds connected to the atom.                                                              | Integer (e.g., 1, 2, 3, …)                                   |
+| **Formal Charge**          | Node     | The formal charge of the atom.                                                                           | Integer (0, +1, -1, etc.)                                    |
+| **Hybridization**          | Node     | The hybridization state of the atom, mapped to an integer code.                                           | 0: sp, 1: sp2, 2: sp3, -1: unknown                           |
+| **Aromaticity**            | Node     | Indicates if the atom is part of an aromatic system.                                                    | 0 (non-aromatic) or 1 (aromatic)                             |
+| **Total Hydrogens**        | Node     | Total number of hydrogen atoms attached to the atom.                                                    | Integer                                                    |
+| **Radical Electrons**      | Node     | Number of unpaired (radical) electrons on the atom.                                                     | Integer                                                    |
+| **In Ring**                | Node     | Indicates whether the atom is part of a ring structure.                                                 | 0 (not in ring) or 1 (in ring)                               |
+| **Chirality**              | Node     | The chirality tag of the atom as assigned by RDKit.                                                     | RDKit chirality tag (e.g., CHI_UNSPECIFIED, etc.)            |
+| **Bond Type**              | Edge     | Represents the bond type as a floating point value (e.g., 1.0 for single, 2.0 for double bonds).           | Float (e.g., 1.0, 2.0, 3.0; aromatic bonds ~1.5)             |
+| **Bond in Ring**           | Edge     | Indicates whether the bond is part of a ring.                                                           | 0.0 (not in ring) or 1.0 (in ring)                           |
+
+Some examples with 3 random selected nodes and edges with their features:
 
 | ![Feature 1](https://github.com/user-attachments/assets/c7edce2d-aa65-41e8-bc48-5472479fb840) | ![Feature 2](https://github.com/user-attachments/assets/3ad5b698-fc0c-4be4-8bcd-bc06f1c662b8) |
 |-----------|-----------|
@@ -33,8 +53,8 @@ In this project, we have developed multiple Graph Neural Network (GNN) models wi
 
 # TODO
 - [ ] Using Differentiable Pooling (e.g. SAGPooling) instead of TopK Pooling mechanism.
-
 - [ ] Research More On the most effective chemical features for nodes and edges
+- [ ] Experimenting with more advanced GNN architectures and hyperparameter tuning
 
 # Refrences
 [1] [Classiﬁcation of HIV‑1 Protease Inhibitors by Machine Learning Methods](https://pubs.acs.org/doi/epdf/10.1021/acsomega.8b01843)
