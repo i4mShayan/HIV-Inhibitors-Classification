@@ -7,17 +7,27 @@ HIV inhibitor molecules are special compounds that block the virus from growing 
 
 In this project, we have developed multiple Graph Neural Network (GNN) models with different message-passing mechanisms to classify whether a given molecule is an HIV inhibitor or not. These models analyze molecular structures as graphs, learning relationships between atoms and bonds to identify potential drug candidates for HIV treatment.
 
-# Feature Extraction Pipeline
+## Table of Contents
+- [Feature Extraction Pipeline](#feature-extraction-pipeline)
+  - [1. Get Graph Representation of Molecules](#1-get-graph-representation-of-molecules)
+  - [2. Get Node and Edge Features](#2-get-node-and-edge-features)
+- [Distribution and Split Analysis](#distribution-and-split-analysis)
+- [Models and Training Config](#models-and-training-config)
+- [Results and Analysis](#results-and-analysis)
+- [Future Work](#future-work)
+- [References](#references)
+
+## Feature Extraction Pipeline
 
 We convert molecular structures into graph representations and extract detailed features from both nodes (atoms) and edges (bonds) to capture the chemical characteristics essential for classification.
 
-## 1. Get Graph Representation of Molecules
+### 1. Get Graph Representation of Molecules
 
 | Sample 1 | Sample 2 |
 | ------------------------ | ------------------------ |
 | ![Graph Rep 1](https://github.com/user-attachments/assets/d4e236b6-5a20-4d43-ace6-7f831d6f2448) | ![Graph Rep 2](https://github.com/user-attachments/assets/10886c1b-cf53-4db0-a580-8e22d7c999d2) |
 
-## 2. Get Node and Edge Features
+### 2. Get Node and Edge Features
 
 Each molecule is represented as a graph where nodes (atoms) have chemical properties and edges (bonds) indicate connectivity. The table below provides a quick reference of the extracted features used for training the models.
 
@@ -44,7 +54,7 @@ Some examples with 3 randomly selected nodes and edges along with their features
 |-----------|-----------|
 | ![Example Edge 1](https://github.com/user-attachments/assets/1b43f136-b94e-494c-89d9-f4eaf94e412d) | ![Example Edge 2](https://github.com/user-attachments/assets/04377b34-388d-40f0-9908-306f387bbf90) |
 
-# Distribution and Split Analysis
+## Distribution and Split Analysis
 
 We analyzed the distribution of our dataset to ensure that the training and test sets share similar chemical spaces. This helps in building models that generalize well to unseen data.
 
@@ -61,7 +71,7 @@ We analyzed the distribution of our dataset to ensure that the training and test
 > **(b) Principal Component Analysis (PCA):**  
 > PCA was applied to molecular descriptors, with the first two components capturing nearly all the variance. The overlapping clusters confirm that the test set is well-represented within the training set.
 
-# Models and Training Config
+## Models and Training Config
 
 We tested four nearly identical models, differing only in their message passing mechanisms (GCN, GAT, GIN, and TransformerConv) to compare their strengths for the HIV inhibitor classification task. All models were trained using the same configuration, ensuring a fair comparison of the message passing methods.
 
@@ -86,7 +96,7 @@ config = {
 }
 ```
 
-# Results and Analysis
+## Results and Analysis
 
 We evaluated the performance of each model using key metrics such as accuracy, precision, recall, and F1 score. The table below summarizes the results:
 
@@ -102,13 +112,13 @@ We evaluated the performance of each model using key metrics such as accuracy, p
 - **GIN:** Shows lower performance, suggesting further tuning is required.
 - **TransformerConv:** Performs competitively, though slightly below GAT.
 
-# Future Work
+## Future Work
 
 - [ ] Explore using Differentiable Pooling (e.g., SAGPooling) as an alternative to the TopK Pooling mechanism.
 - [ ] Investigate more effective chemical features for both nodes and edges.
 - [ ] Experiment with more advanced GNN architectures and perform comprehensive hyperparameter tuning.
 
-# References
+## References
 
 [1] [Classiﬁcation of HIV‑1 Protease Inhibitors by Machine Learning Methods](https://pubs.acs.org/doi/epdf/10.1021/acsomega.8b01843)
 
