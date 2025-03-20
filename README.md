@@ -8,14 +8,21 @@ In this project, we have developed multiple Graph Neural Network (GNN) models wi
 
 
 # Feature Extraction Pipeline
-## 1. Get Graph Representation of Molecules
-![image](https://github.com/user-attachments/assets/d4e236b6-5a20-4d43-ace6-7f831d6f2448)
-![image](https://github.com/user-attachments/assets/10886c1b-cf53-4db0-a580-8e22d7c999d2)
 
+## 1. Get Graph Representation of Molecules
+
+| Sample 1 | Sample 2 |
+| ------------------------ | ------------------------ |
+| ![Graph Rep 1](https://github.com/user-attachments/assets/d4e236b6-5a20-4d43-ace6-7f831d6f2448) | ![Graph Rep 2](https://github.com/user-attachments/assets/10886c1b-cf53-4db0-a580-8e22d7c999d2) |
 
 ## 2. Get Node and Edge Features
-![image](https://github.com/user-attachments/assets/036479e7-f6de-4e88-8918-b266dbea4586)
-![image](https://github.com/user-attachments/assets/e5023e01-5c82-4539-8eb6-73888ac9e023)
+
+| ![Feature 1](https://github.com/user-attachments/assets/c7edce2d-aa65-41e8-bc48-5472479fb840) | ![Feature 2](https://github.com/user-attachments/assets/3ad5b698-fc0c-4be4-8bcd-bc06f1c662b8) |
+|-----------|-----------|
+| ![Feature 3](https://github.com/user-attachments/assets/f145f78a-f6d0-4d4f-b2b0-43d9361da618) | ![Feature 4](https://github.com/user-attachments/assets/d8ce294a-7d1d-4aa3-b6b2-a17a9d5d753d) |
+
+
+
 
 # Dataset Split
 ![image](https://github.com/user-attachments/assets/f1379d35-912f-4517-b222-9a3a1b257a3d)
@@ -25,7 +32,9 @@ In this project, we have developed multiple Graph Neural Network (GNN) models wi
 
 
 # TODO
-Using Differentiable Pooling (e.g. SAGPooling) instead of TopK Pooling mechanism.
+- [ ] Using Differentiable Pooling (e.g. SAGPooling) instead of TopK Pooling mechanism.
+
+- [ ] Research More On the most effective chemical features for nodes and edges
 
 # Refrences
 [1] [Classiﬁcation of HIV‑1 Protease Inhibitors by Machine Learning Methods](https://pubs.acs.org/doi/epdf/10.1021/acsomega.8b01843)
